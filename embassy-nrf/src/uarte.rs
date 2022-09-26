@@ -1040,7 +1040,7 @@ mod eh1 {
         type Error = Error;
     }
 
-    impl<'d, T: Instance> embedded_hal_1::serial::blocking::Write for Uarte<'d, T> {
+    impl<'d, T: Instance> embedded_hal_1::serial::Write for Uarte<'d, T> {
         fn write(&mut self, buffer: &[u8]) -> Result<(), Self::Error> {
             self.blocking_write(buffer)
         }
@@ -1054,7 +1054,7 @@ mod eh1 {
         type Error = Error;
     }
 
-    impl<'d, T: Instance> embedded_hal_1::serial::blocking::Write for UarteTx<'d, T> {
+    impl<'d, T: Instance> embedded_hal_1::serial::Write for UarteTx<'d, T> {
         fn write(&mut self, buffer: &[u8]) -> Result<(), Self::Error> {
             self.blocking_write(buffer)
         }
@@ -1100,7 +1100,7 @@ mod eha {
 
         type FlushFuture<'a> = impl Future<Output = Result<(), Self::Error>> + 'a where Self: 'a;
 
-        fn flush<'a>(&'a mut self) -> Self::FlushFuture<'a> {
+        fn flush(&mut self) -> Result<(), Self::Error> {
             async move { Ok(()) }
         }
     }
@@ -1114,7 +1114,7 @@ mod eha {
 
         type FlushFuture<'a> = impl Future<Output = Result<(), Self::Error>> + 'a where Self: 'a;
 
-        fn flush<'a>(&'a mut self) -> Self::FlushFuture<'a> {
+        fn flush(&mut self) -> Result<(), Self::Error> {
             async move { Ok(()) }
         }
     }
@@ -1144,7 +1144,7 @@ mod eha {
 
         type FlushFuture<'a> = impl Future<Output = Result<(), Self::Error>> + 'a where Self: 'a;
 
-        fn flush<'a>(&'a mut self) -> Self::FlushFuture<'a> {
+        fn flush(&mut self) -> Result<(), Self::Error> {
             async move { Ok(()) }
         }
     }
